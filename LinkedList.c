@@ -41,27 +41,92 @@ void traversal(struct node *temp)
     }
 }
 
-void insert(struct node* new)
+void insert(struct node* new, int n)
 {
     int index;
+    struct node* p,*q;
+    p=head;
     printf("\nWhere do you want to insert? ");
     scanf("%d", &index);
-    if (index == 0)
+    if (index == 1)
     {
         new = (struct node *)malloc(sizeof(struct node));
-        printf("\nEnter the data");
+        printf("\nEnter the data : ");
         scanf("%d",&new->data);
         new->next = head;
         head = new;
     }
+    else if(index==n){
+        new = (struct node *)malloc(sizeof(struct node));
+        printf("\nEnter the data :");
+        scanf("%d",&new->data);
+        while(p->next!=NULL){
+            p=p->next;
+        }
+        p->next=new;
+        new->next=NULL;
+    }
+    else{
+        int i=1;
+        while(i<index-1){
+            p = p->next;
+            i++;
+        }
+        q = p->next;
+        new = (struct node *)malloc(sizeof(struct node));
+        printf("\nEnter the data :");
+        scanf("%d",&new->data);
+        new->next = p->next;
+        p->next = new;
+    }
 }
 
-void del()
+void del(int size)
 {
+    int index;
+    struct node* p,*q;
+    p=head;
+    printf("\nWhere do you want to Delete? ");
+    scanf("%d", &index);
+    if (index == 1)
+    {
+        p = head;
+        head = head->next;
+        free(p);
+    }
+    else if(index==size-1){
+        while(p->next->next!=NULL){
+            p=p->next;
+        }
+        q = p->next;
+        p->next = NULL;
+        free(q);
+    }
+    else{
+        int i=1;
+        while(i<index-1){
+            p = p->next;
+            i++;
+        }
+        q = p->next;
+        p->next = q->next;
+        free(q);
+    }
+}
+
+int count(){
+    int count = 0;
+    temp = head;
+    while(temp->next!=NULL){
+        count ++;
+        temp = temp->next;
+    }
+    return count;
 }
 
 void main()
 {
+    int size;
     int n, ch, i = 1;
     struct node *new, *temp;
 
@@ -78,10 +143,11 @@ void main()
         switch (ch)
         {
         case 1:
-            insert(new);
+            insert(new,n);
             break;
         case 2:
-            del();
+            size = count();
+            del(size);
             break;
         case 3:
             temp = head;
