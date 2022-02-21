@@ -20,6 +20,7 @@ void enqueue(){
         scanf("%d",&new->data);
         temp = front = rear = new;
         rear->next = NULL;
+        front->next = NULL;
     }
     else{
         new = (struct queue*)malloc(sizeof(struct queue));
@@ -27,16 +28,30 @@ void enqueue(){
         scanf("%d",&new->data);
         rear->next = new;
         rear = new;
-
+        rear->next = NULL;
     }
 }
 
 void dequeue(){
-
+    if(front==rear){
+        front = NULL;
+        printf("\nDone the last");
+    }
+    else if(front == NULL){
+        printf("\nQueue empty!");
+    }
+    else{
+        front = front->next;
+        printf("\nDone");
+    }
 }
 
 void display(){
-
+    temp = front;
+    while(temp!=NULL){
+        printf("%d  ",temp->data);
+        temp = temp->next;
+    }
 }
 
 void main()
