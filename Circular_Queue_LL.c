@@ -1,54 +1,53 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include<stdio.h>
+#include<stdlib.h>
 
-
-struct queue
-{
+struct queue{
     int data;
     struct queue *next;
 };
 
 struct queue *rear = NULL;
 struct queue *front = NULL;
-struct queue *new, *temp;
-
+struct queue *new;
 
 void enqueue(){
-    if(rear==NULL && front==NULL){
+    if(rear == NULL && front == NULL){
         new = (struct queue*)malloc(sizeof(struct queue));
-        printf("\nEnter data :");
+        printf("\nEnter data : ");
         scanf("%d",&new->data);
-        temp = front = rear = new;
-        rear->next = NULL;
-        front->next = NULL;
+        rear = front = new;
+        rear->next = front;
     }
     else{
         new = (struct queue*)malloc(sizeof(struct queue));
-        printf("\nEnter data :");
+        printf("\nEnter data : ");
         scanf("%d",&new->data);
         rear->next = new;
         rear = new;
-        rear->next = NULL;
+        rear->next = front;
     }
 }
 
 void dequeue(){
-    if(front==rear){
-        rear = front = NULL;
-        printf("\nDone the last and now the Queue is empty!");
+    if(front == rear){
+        front = rear = NULL;
+        printf("\nDeleted");
+        printf("\nlist is now empty");
     }
     else{
-        front = front->next;
-        printf("\nDone");
+        front=front->next;
+        rear->next = front;
+        printf("\nDeleted");
     }
 }
 
 void display(){
-    temp = front;
-    while(temp!=NULL){
-        printf("%d  ",temp->data);
-        temp = temp->next;
+    new = front;
+    while(new->next!=front){
+        printf("%d  ",new->data);
+        new = new->next;
     }
+    printf("%d  ",rear->data);
 }
 
 void main()
