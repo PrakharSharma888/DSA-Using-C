@@ -1,22 +1,20 @@
-// Stable sort and adaptive
-// O(n2) best- O(n)
+// niether adaptive nor stable 
+// O(n2) in all cases
 
 #include<stdio.h>
 int arr[100];
 int n;
 
-void insertion(){
-    int j, key;
-
-    for(int i = 1; i<=n-1; i++){
-        j = i-1;
-        key = arr[i];
-        
-        while(j>=0 && arr[j] > key){
-            arr[j+1] = arr[j];
-            j--;
+void selection(){
+    int temp;
+    for(int i=0; i<n-1; i++){
+        for(int j= i+1; j<n ; j++){
+            if(arr[i] > arr[j]){
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
         }
-        arr[j+1] = key;
     }
 }
 
@@ -33,6 +31,6 @@ void main(){
     for(int i = 0; i<n ; i++){
         scanf("%d",&arr[i]);
     }
-    insertion();
+    selection();
     print();
 }

@@ -1,3 +1,6 @@
+// stable and can be made adaptive
+// O(n2) best - O(n)
+
 #include <stdio.h>
 
 void bubble(int arr[], int n)
