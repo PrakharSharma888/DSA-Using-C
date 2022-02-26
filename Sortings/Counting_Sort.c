@@ -1,3 +1,6 @@
+// O(n)
+// extra space leta he but
+
 #include <stdio.h>
 int n;
 
