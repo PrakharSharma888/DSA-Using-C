@@ -1,3 +1,6 @@
+// niether stable not adaptive
+// O(n2) best case - O(nlog n)
+
 #include <stdio.h>
 int arr[100];
 
