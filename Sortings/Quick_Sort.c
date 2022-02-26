@@ -1,4 +1,4 @@
-// niether stable not adaptive
+// not stable but adaptive
 // O(n2) best case - O(nlog n)
 
 #include <stdio.h>

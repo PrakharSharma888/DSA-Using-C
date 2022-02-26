@@ -1,3 +1,6 @@
+// stable but not adaptive
+// O(nlog n) in all cases
+
 #include <stdio.h>
 int n;
 
